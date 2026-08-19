@@ -1,0 +1,23 @@
+# Component Card: openai-compatible-provider
+
+- Source: KaoBuddy `backend/app/ai_client.py`, `main.py`, `schemas.py`, and frontend `src/api.ts` / `storage.ts`.
+- License: KaoBuddy repository declares MIT.
+- Version: KaoBuddy package 1.2.4; source directory has no Git metadata, so commit identity is unavailable.
+- Owner boundary: offline protocol/error behavior only. No external provider availability claim.
+- Independent smoke command: create local `.venv`, run `python -m pip install -r requirements-smoke.txt`, then run `smoke.py`.
+- Real input: actual HTTP requests from KaoBuddy `ai_client.py` to a real loopback HTTP server with synthetic messages and `TEST_ONLY_API_KEY`.
+- Output contract: sanitized JSON at `H:/studybuddy-test/artifacts/openai-compatible-provider/latest.json`.
+- Verified behavior: success, HTTP 401/429/500, timeout, empty content, nonstandard response object, invalid JSON, valid SSE, and SSE disconnect after one chunk.
+- Request contract: `${base_url}/chat/completions`; Bearer auth; model/messages/temperature/max_tokens; `stream: true` for SSE.
+- Timeout: computed from max tokens; non-stream 60-300 seconds and stream 120-420 seconds in production code. Smoke temporarily lowers timeout to 0.2 seconds.
+- Error mapping: HTTP status text becomes `AiClientError`; FastAPI catches it and returns HTTP 502 detail. Frontend displays detail text without status-specific UX.
+- Findings: invalid JSON raises raw `JSONDecodeError`; an SSE stream ending without `[DONE]` is accepted as successful partial content; malformed SSE chunks are skipped; all upstream statuses lose their original status at the FastAPI boundary.
+- Configuration storage: BYOK provider/base URL/model/API key/temperature/max tokens are stored together as plaintext JSON in browser `localStorage` key `kaobuddy-api-config`. Invite-mode server credentials use environment variables.
+- Provider support: arbitrary HTTP(S) base URL and model are accepted. DeepSeek v4 has a hard-coded `thinking: {type: "disabled"}` condition. DeepSeek image OCR is hard-rejected by provider/base URL/model substring detection.
+- Logging/privacy: timing logs include provider, model, prompt character count, max tokens, and truncated error response text. Request bodies and full successful model outputs are not logged. Upstream error body may be logged/displayed up to 300/400 characters and needs a stricter redaction policy.
+- Usage/cost: BYOK response usage is discarded. Invite mode reads usage and estimates CNY from environment prices; no general token/cost UI exists.
+- Windows prerequisites: isolated Python environment with `httpx` and `pydantic`; FastAPI only needed for route-level/start tests.
+- Resource measurement: 1.210 seconds including intentional timeout.
+- Smoke result: `smoke_passed` for offline protocol/error behavior only; real provider remains `not_verified`.
+- Integration result: `not started`
+- Evidence path: `H:/studybuddy-test/artifacts/openai-compatible-provider/latest.json`

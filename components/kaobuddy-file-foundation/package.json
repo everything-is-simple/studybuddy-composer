@@ -1,0 +1,14 @@
+{
+  "name": "studybuddy-kaobuddy-file-foundation-smoke",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "smoke": "tsx smoke.ts"
+  },
+  "dependencies": {
+    "jszip": "3.10.1",
+    "mammoth": "1.12.0",
+    "pdfjs-dist": "4.10.38",
+    "tsx": "4.22.4"
+  }
+}

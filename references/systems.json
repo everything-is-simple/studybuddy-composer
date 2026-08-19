@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "rule": "reference only; no direct source import",
+  "systems": [
+    {"name":"kaobuddy-pwa","path":"H:/kaobuddy","remote":"https://github.com/jin-zi-xuan/kaobuddy-pwa","role":"product shell and learning workflow reference","status":"registered"},
+    {"name":"ai-studybuddy","path":"H:/ai-studybuddy","remote":"unknown-local-record","role":"business rules and service implementation reference","status":"registered"},
+    {"name":"pi-studybuddy","path":"H:/pi-studybuddy","remote":"https://github.com/everything-is-simple/pi-studybuddy","role":"failure ledger and security lessons only","status":"registered"},
+    {"name":"ai-studybuddy-composer","path":"H:/ai-studybuddy-composer","remote":"local trial ground","role":"component evidence source","status":"registered"},
+    {"name":"pi-references","path":"H:/pi-references","remote":"local reference collection","role":"provider and upstream component research","status":"registered"}
+  ]
+}
