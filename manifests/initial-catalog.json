@@ -9,6 +9,7 @@
     {"id":"feishu-webhook","source":"ai-studybuddy-composer/windows-native/07-feishu-webhook","kind":"delivery","status":"researching"},
     {"id":"whispercpp","source":"ai-studybuddy-composer/local-asr-whispercpp","kind":"asr","status":"researching"},
     {"id":"pdf-docx-pptx","source":"H:/kaobuddy and H:/ai-studybuddy","kind":"document-conversion","status":"researching","evidence":"H:/studybuddy-test/artifacts/kaobuddy-foundation/latest.json","note":"KaoBuddy parser-level smoke passed with findings; backend adapters and UI path not verified"},
+    {"id":"backend-file-parsers","source":"H:/studybuddy-composer/components/backend-file-parsers","kind":"document-conversion","status":"smoke_passed","evidence":"H:/studybuddy-test/artifacts/backend-file-parsers/latest.json","note":"Independent Python 3.10 adapter smoke passed; RTF and legacy DOC/PPT are explicitly rejected"},
     {"id":"openai-compatible-provider","source":"H:/kaobuddy/backend/app/ai_client.py and H:/ai-studybuddy/packages/backend/src/adapters/ai","kind":"ai-provider","status":"researching","evidence":"H:/studybuddy-test/artifacts/openai-compatible-provider/latest.json","note":"offline protocol smoke passed; real provider not verified"}
   ]
 }
