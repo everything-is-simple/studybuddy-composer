@@ -1,0 +1,24 @@
+# Component Card: deterministic-chunker
+
+- Source: newly reimplemented StudyBuddy Composer algorithm; behavior aligned to the formal `chunks` / `chunk_spans` schema in `H:/studybuddy/backend/app/migrations/runner.py` (`_create_ai_schema`) and the chunk contract in `H:/studybuddy/docs/ai-learning-architecture.md` §5. No reference source is imported.
+- License: project-owned test implementation; Python standard library only.
+- Version: `1.0.0` (`chunking_version`); strategy `codepoint-window-v1`.
+- Owner boundary: Composer-only feasibility test. Formal `material_revisions` / `chunks` / `chunk_spans` persistence, chunk FTS5 and retrieval must be implemented in `H:/studybuddy` after this contract is reviewed. This component does NOT touch SQLite, FTS5, or any provider.
+- Independent smoke command: `D:\miniconda\py310\python.exe H:/studybuddy-composer/components/deterministic-chunker/smoke.py`
+- Real input: synthetic extraction contracts (full text + page/slide/document spans) mirroring the `backend-file-parsers.ParseResult` / `TextSpan` output; Chinese heavy text with fullwidth punctuation, emoji and combining marks.
+- Output contract: `chunk(ChunkInput, ChunkerConfig) -> list[Chunk]`. Each `Chunk` carries `chunk_index`, `text`, `normalized_text`, `start_offset`, `end_offset` (Python Unicode code-point indices into the extraction text, NOT byte offsets), `token_count_estimate`, `overlap_before`, `overlap_after`, `strategy`, `chunking_version`, `status="ready"`, `error_code=None`, `spans` (exactly one `ChunkSpanLink`) and a deterministic `chunk_id`.
+- `ChunkSpanLink.overlap_start` / `overlap_end` reference frame: code-point offsets RELATIVE TO `span.text` (not the extraction text). Chosen so a citation renderer can locate "the slice on page N" without recomputing the global span position; the global extraction offsets are carried on the chunk itself.
+- Configuration (determinism input): `target_codepoints=500`, `overlap_codepoints=50`, `hard_max_codepoints=2000`, `strategy="codepoint-window-v1"`, `chunking_version="1.0.0"`. Cases may override per-case.
+- `normalized_text` algorithm: `unicodedata.normalize("NFKC", text)` then fold any whitespace run to a single space and `strip()`. Pure function of `text`; does not affect reconstruction.
+- `token_count_estimate` algorithm: each East-Asian wide/fullwidth/ambiguous character (`unicodedata.east_asian_width` in `W`/`F`/`A`) counts as one token; remaining characters are whitespace-split and each non-empty token counts as one. No external tokenizer.
+- Determinism: identical `(extraction_sha256, revision_fingerprint, spans, config, strategy, chunking_version)` produces byte-identical chunks; verified in-process (run twice) and cross-process (fresh Python interpreter, `PYTHONIOENCODING=utf-8`). `chunk_id = "chunk_" + sha256(revision_fingerprint + ":" + chunk_index)[:16]`.
+- Span strategy: the chunker NEVER crosses a span boundary. Each chunk maps to exactly one span, even when the target window is larger than a span. This is stricter than the architecture minimum ("window < span must not cross") and is chosen for simpler determinism, absolute page/slide boundary safety, and easier citation rendering. Long spans are split internally with overlap.
+- Reconstruction: the `"\\n\\n"` separator between spans is never part of any chunk; the `contiguity_core` invariant rebuilds the extraction text by grouping chunks per span (overlap removed) and re-inserting the separators.
+- Verified behavior: empty extraction -> 0 chunks; CJK/Unicode code-point offsets; page and slide non-crossing; long-span internal split with overlap; reconstruction of mixed short/long/page/slide inputs; in-process and cross-process determinism.
+- Failure boundaries: real PDF/DOCX/PPTX binaries are NOT tested (input is the synthetic extraction contract); chunk FTS5, retrieval, provider, Q&A, multi-process and SQLite persistence are out of scope; cross-process determinism assumes the same Python version (different `unicodedata` tables may differ slightly).
+- Windows prerequisites: `D:\miniconda\py310\python.exe` (Python 3.10); standard library only, no package installation, no virtual environment.
+- Resource measurement: 556.543 ms total for 8 cases incl. 7 cross-process subprocess spawns; each case ~75–80 ms dominated by subprocess startup.
+- Privacy/logging restrictions: chunk body text is never written to stdout or the artifact; only sha256, counts, booleans and config are recorded. Synthetic Chinese data only; no user data or credentials.
+- Smoke result: `smoke_passed`
+- Integration result: `not started`
+- Evidence path: `H:/studybuddy-test/artifacts/deterministic-chunker/latest.json`

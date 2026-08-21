@@ -1,0 +1,3 @@
+# deterministic-chunker smoke uses Python standard library only (hashlib,
+# unicodedata, json, subprocess, pathlib, dataclasses, typing). No third-party
+# packages are required and no virtual environment is needed.
