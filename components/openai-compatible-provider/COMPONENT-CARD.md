@@ -1,23 +1,17 @@
 # Component Card: openai-compatible-provider
 
-- Source: KaoBuddy `backend/app/ai_client.py`, `main.py`, `schemas.py`, and frontend `src/api.ts` / `storage.ts`.
-- License: KaoBuddy repository declares MIT.
-- Version: KaoBuddy package 1.2.4; source directory has no Git metadata, so commit identity is unavailable.
-- Owner boundary: offline protocol/error behavior only. No external provider availability claim.
-- Independent smoke command: create local `.venv`, run `python -m pip install -r requirements-smoke.txt`, then run `smoke.py`.
-- Real input: actual HTTP requests from KaoBuddy `ai_client.py` to a real loopback HTTP server with synthetic messages and `TEST_ONLY_API_KEY`.
-- Output contract: sanitized JSON at `H:/studybuddy-test/artifacts/openai-compatible-provider/latest.json`.
-- Verified behavior: success, HTTP 401/429/500, timeout, empty content, nonstandard response object, invalid JSON, valid SSE, and SSE disconnect after one chunk.
-- Request contract: `${base_url}/chat/completions`; Bearer auth; model/messages/temperature/max_tokens; `stream: true` for SSE.
-- Timeout: computed from max tokens; non-stream 60-300 seconds and stream 120-420 seconds in production code. Smoke temporarily lowers timeout to 0.2 seconds.
-- Error mapping: HTTP status text becomes `AiClientError`; FastAPI catches it and returns HTTP 502 detail. Frontend displays detail text without status-specific UX.
-- Findings: invalid JSON raises raw `JSONDecodeError`; an SSE stream ending without `[DONE]` is accepted as successful partial content; malformed SSE chunks are skipped; all upstream statuses lose their original status at the FastAPI boundary.
-- Configuration storage: BYOK provider/base URL/model/API key/temperature/max tokens are stored together as plaintext JSON in browser `localStorage` key `kaobuddy-api-config`. Invite-mode server credentials use environment variables.
-- Provider support: arbitrary HTTP(S) base URL and model are accepted. DeepSeek v4 has a hard-coded `thinking: {type: "disabled"}` condition. DeepSeek image OCR is hard-rejected by provider/base URL/model substring detection.
-- Logging/privacy: timing logs include provider, model, prompt character count, max tokens, and truncated error response text. Request bodies and full successful model outputs are not logged. Upstream error body may be logged/displayed up to 300/400 characters and needs a stricter redaction policy.
-- Usage/cost: BYOK response usage is discarded. Invite mode reads usage and estimates CNY from environment prices; no general token/cost UI exists.
-- Windows prerequisites: isolated Python environment with `httpx` and `pydantic`; FastAPI only needed for route-level/start tests.
-- Resource measurement: 1.210 seconds including intentional timeout.
-- Smoke result: `smoke_passed` for offline protocol/error behavior only; real provider remains `not_verified`.
-- Integration result: `not started`
-- Evidence path: `H:/studybuddy-test/artifacts/openai-compatible-provider/latest.json`
+- Source: project-owned, independent Composer reimplementation of the documented OpenAI-compatible non-streaming HTTP contract. KaoBuddy was used only as historical protocol reference; this component imports no KaoBuddy source.
+- License: project-owned test implementation; Python standard library only.
+- Version: `1.0.0`.
+- Owner boundary: offline loopback protocol/error behavior only. It is not a StudyBuddy runtime dependency and does not establish external Provider availability.
+- Independent smoke command: `C:\miniconda\py310\python.exe H:\studybuddy-composer\components\openai-compatible-provider\smoke.py`.
+- Real input: requests to a real local `127.0.0.1` HTTP server with a synthetic message and fixed `TEST_ONLY_API_KEY` sentinel.
+- Output contract: sanitized JSON at `H:/studybuddy-test/artifacts/openai-compatible-provider/latest.json`; it records stable codes and booleans only, not requests, responses, keys, source text, paths, or raw exceptions.
+- Request contract: `${base_url}/chat/completions`; Bearer auth; fixed model/messages/temperature/max_tokens; `stream: false`.
+- Verified behavior: successful cited response, HTTP 401/403/429/500 mapping, timeout, malformed JSON/schema, empty content, response byte limit, and request header/body shape.
+- Failure boundaries: SSE/streaming, retry policy, real Provider account/model/gateway availability, cost/usage, public network, real source material, browser storage and UI are out of scope.
+- Windows prerequisites: Python 3.10 standard library; no package installation or external service.
+- Privacy/logging restrictions: loopback-only; only the fixed sentinel key is accepted; artifact excludes full request/response data and credentials.
+- Smoke result: `smoke_passed` only after the independent loopback command passes; real Provider remains `not_verified`.
+- Integration result: `not started`.
+- Evidence path: `H:/studybuddy-test/artifacts/openai-compatible-provider/latest.json`.

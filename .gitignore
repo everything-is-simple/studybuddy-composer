@@ -8,3 +8,10 @@ node_modules/
 __pycache__/
 *.pyc
 .pytest_cache/
+
+# third-party reference component archives/extracted dirs (never commit)
+components/CapsWriterCli_Full.7z
+components/CapsWriterCli_Full/
+components/KaoBuddy-Windows.zip
+components/WhisperCli.7z
+components/WhisperCli/

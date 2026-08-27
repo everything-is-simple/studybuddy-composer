@@ -1,5 +1,39 @@
 {
   "version": 1,
   "rule": "only independently tested components may enter integration",
-  "components": []
+  "components": [
+    {
+      "id": "backend-file-parsers",
+      "kind": "document-conversion",
+      "source": "H:/studybuddy-composer/components/backend-file-parsers",
+      "status": "integration_passed",
+      "smoke_evidence": "H:/studybuddy-test/artifacts/backend-file-parsers/latest.json",
+      "integration_evidence": "H:/studybuddy-test/artifacts/file-storage-foundation/latest.json",
+      "scope": "offline synthetic TXT/Markdown/PDF/DOCX/PPTX parsing and file-storage integration; no OCR or legacy conversion"
+    },
+    {
+      "id": "deterministic-chunker",
+      "kind": "chunker",
+      "source": "H:/studybuddy-composer/components/deterministic-chunker",
+      "status": "smoke_passed",
+      "evidence": "H:/studybuddy-test/artifacts/deterministic-chunker/latest.json",
+      "scope": "offline synthetic Unicode/span chunking; no SQLite, FTS, provider, or formal-system adoption claim"
+    },
+    {
+      "id": "sqlite-local",
+      "kind": "database",
+      "source": "H:/studybuddy-composer/components/sqlite-local",
+      "status": "smoke_passed",
+      "evidence": "H:/studybuddy-test/artifacts/sqlite-local/latest.json",
+      "scope": "local SQLite WAL, lock, backup, and restore smoke; no migration or multi-process support claim"
+    },
+    {
+      "id": "openai-compatible-provider",
+      "kind": "ai-provider",
+      "source": "H:/studybuddy-composer/components/openai-compatible-provider",
+      "status": "smoke_passed",
+      "evidence": "H:/studybuddy-test/artifacts/openai-compatible-provider/latest.json",
+      "scope": "independent loopback OpenAI-compatible non-streaming protocol smoke; no real-provider availability claim"
+    }
+  ]
 }
