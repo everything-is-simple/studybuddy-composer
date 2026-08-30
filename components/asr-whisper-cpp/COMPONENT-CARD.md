@@ -21,7 +21,7 @@
 - Cleanup: controlled temporary directory and child-process cleanup must be evidenced
 - Privacy/logging restrictions: no audio, transcript, absolute path, model path, stderr, or secret in ordinary logs/evidence
 - Smoke result: `smoke_passed` (C1-ASR-01 through C1-ASR-14 passed for official `H:/Whisper/cli` with public release fixture; official release asset hash comparison remains not_verified)
-- Integration result: `not_started`
-- Evidence path: local partial smoke evidence `results/asr-whisper-cpp/c1-smoke.json` (ignored; not a catalog promotion artifact)
+- Integration result: `integration_passed` (isolated draft projection, failure/silent handling, idempotent repeat, rollback, backup/restore and privacy; evidence recorded externally)
+- Evidence path: `H:/studybuddy-test/artifacts/asr-whisper-cpp-integration/latest.json`
 - Formal system allowed: `false`
 - Notes: Selected C0 candidate and canonical local runtime. Official 1.12.0 CLI passes the public `jfk.wav` speech fixture; the SAPI fixture remains unsuitable as a positive recognition oracle for this runtime and is not used for promotion.

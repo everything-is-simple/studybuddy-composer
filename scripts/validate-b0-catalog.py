@@ -107,7 +107,8 @@ def main() -> int:
         fail("asr-whisper-cpp must retain H:/Whisper as its canonical runtime")
     status_counts = {status: sum(candidate["status"] == status for candidate in candidates) for status in ALLOWED_STATUSES}
     summary = ", ".join(
-        f"{status_counts[status]} {status}" for status in ("smoke_passed", "researching")
+        f"{status_counts[status]} {status}"
+        for status in ("smoke_passed", "integration_passed", "researching")
     )
     print(f"B0 catalog validation passed: {summary} candidates across 4 capabilities")
     return 0
