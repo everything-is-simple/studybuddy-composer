@@ -5,7 +5,7 @@
 
 ## Purpose
 
-B0 establishes one auditable intake contract for ASR, OCR, report, and delivery candidates before any real capability is implemented in StudyBuddy. The catalog is not a pass list. Every candidate currently remains `researching`; no B0 record authorizes import into `H:/studybuddy` or `H:/studybuddy-integration`.
+B0 establishes one auditable intake contract for ASR, OCR, report, and delivery candidates before any real capability is implemented in StudyBuddy. The catalog is not a general pass list. Eight candidates remain `researching`; the selected ASR candidate has passed C1 only. No B0 record authorizes import into `H:/studybuddy` or `H:/studybuddy-integration`.
 
 ## Required record
 
@@ -34,7 +34,7 @@ Every candidate must have a `COMPONENT-CARD.md` and a catalog record containing:
 
 The machine-readable source of truth is [`manifests/b0-catalog.json`](manifests/b0-catalog.json). Current candidate counts:
 
-- ASR: 3 candidates (`researching`); C0 selects `H:/WhisperCli`/whisper.cpp `large-v3-turbo` as the sole runtime, while FunASR/SenseVoice remain unselected alternatives.
+- ASR: 1 selected candidate (`smoke_passed`) and 2 alternatives (`researching`); C0 selects `H:/WhisperCli`/whisper.cpp `large-v3-turbo` as the sole runtime, while FunASR/SenseVoice remain unselected alternatives.
 - OCR: 3 candidates (`researching`); C0 selects PaddleOCR as primary and RapidOCR ONNX as lightweight fallback. CapsWriter remains a fit-assessment record, not a primary path.
 - Report: 1 candidate (`researching`)
 - Delivery: 2 candidates (`researching`)
@@ -46,7 +46,7 @@ The machine-readable source of truth is [`manifests/b0-catalog.json`](manifests/
 - [x] Status vocabulary and promotion rules are frozen.
 - [x] Network-off, temp-directory, timeout, output-limit, cleanup, and privacy rules are frozen.
 - [x] Large binary/model/archive ignore rules are documented and applied to future artifacts.
-- [ ] Independent smoke has passed for the selected candidates.
+- [x] Independent C1 smoke has passed for the selected ASR candidate; OCR, report, and delivery candidates remain pending.
 - [ ] Integration has passed for the selected candidates.
 - [ ] Formal contracts and adapters have been separately approved.
 

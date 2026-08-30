@@ -105,7 +105,11 @@ def main() -> int:
     asr = next(candidate for candidate in candidates if candidate["id"] == "asr-whisper-cpp")
     if not asr["local_reference"].startswith("H:/WhisperCli canonical runtime"):
         fail("asr-whisper-cpp must retain H:/WhisperCli as its canonical runtime")
-    print(f"B0 catalog validation passed: {len(candidates)} researching candidates across 4 capabilities")
+    status_counts = {status: sum(candidate["status"] == status for candidate in candidates) for status in ALLOWED_STATUSES}
+    summary = ", ".join(
+        f"{status_counts[status]} {status}" for status in ("smoke_passed", "researching")
+    )
+    print(f"B0 catalog validation passed: {summary} candidates across 4 capabilities")
     return 0
 
 

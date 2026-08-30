@@ -20,7 +20,7 @@
 - Timeout/output limit: `120s` / `262144 bytes`.
 - Cleanup: controlled temporary directory and child-process cleanup must be evidenced
 - Privacy/logging restrictions: no audio, transcript, absolute path, model path, stderr, or secret in ordinary logs/evidence
-- Smoke result: `researching`
+- Smoke result: `smoke_passed` (C1 synthetic fixture; evidence `results/asr-whisper-cpp/c1-smoke.json`)
 - Integration result: `not_started`
 - Evidence path: `not_recorded`
 - Formal system allowed: `false`
