@@ -24,6 +24,9 @@ def test_b0_catalog_validation_passes():
     asr = next(candidate for candidate in candidates if candidate["id"] == "asr-whisper-cpp")
     assert asr["status"] == "smoke_passed"
     assert asr["evidence_path"] == "results/asr-whisper-cpp/c1-smoke.json"
+    assert "Public release fixture jfk.wav passes" in asr["notes"]
+    assert asr["version"] == "Const-me/Whisper 1.12.0 (Whisper.dll PE product version 1.12.0.0)"
+    assert asr["source_revision"] == "Const-me/Whisper@c5515ace19066e938854b4b99e0c2e9bbc2eeb65"
     assert all(
         candidate["status"] == "researching"
         for candidate in candidates

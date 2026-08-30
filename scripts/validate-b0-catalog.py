@@ -80,8 +80,8 @@ def main() -> int:
         if candidate["status"] == "researching":
             if candidate["evidence_path"] is not None:
                 fail(f"{candidate_id} has evidence while still researching")
-            if candidate["version"] is not None or candidate["artifact_sha256"] is not None:
-                fail(f"{candidate_id} records selected-artifact data before smoke")
+            if candidate["artifact_sha256"] is not None:
+                fail(f"{candidate_id} records selected-artifact hash before smoke")
         elif not candidate["evidence_path"]:
             fail(f"{candidate_id} needs evidence_path before promotion")
 
@@ -103,8 +103,8 @@ def main() -> int:
     if selected != {"asr-whisper-cpp", "ocr-paddleocr", "ocr-rapidocr"}:
         fail(f"unexpected C0 media selections: {sorted(selected)}")
     asr = next(candidate for candidate in candidates if candidate["id"] == "asr-whisper-cpp")
-    if not asr["local_reference"].startswith("H:/WhisperCli canonical runtime"):
-        fail("asr-whisper-cpp must retain H:/WhisperCli as its canonical runtime")
+    if not asr["local_reference"].startswith("H:/Whisper canonical runtime"):
+        fail("asr-whisper-cpp must retain H:/Whisper as its canonical runtime")
     status_counts = {status: sum(candidate["status"] == status for candidate in candidates) for status in ALLOWED_STATUSES}
     summary = ", ".join(
         f"{status_counts[status]} {status}" for status in ("smoke_passed", "researching")

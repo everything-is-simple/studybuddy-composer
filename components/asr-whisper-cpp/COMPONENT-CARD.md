@@ -3,25 +3,25 @@
 - Gate: B0 candidate intake; this card is not an approval.
 - Capability: `asr`
 - Kind: `speech-to-text`
-- Source: https://github.com/ggerganov/whisper.cpp; local RunningCheese wrapper provenance/revision remains to verify.
-- Local reference: `H:/WhisperCli` is the sole canonical runtime; `H:/studybuddy-composer/components/WhisperCli.7z` is Composer evidence/input only.
-- Version: whisper.cpp wrapper revision `to_verify`; selected model `ggml-large-v3-turbo`.
-- Source revision: `to_verify`
+- Source: https://github.com/Const-me/Whisper/releases/tag/1.12.0; official Const-me Windows CLI release.
+- Local reference: `H:/Whisper/cli` is the sole canonical runtime; `H:/WhisperCli` is retained only as historical RunningCheese configuration evidence.
+- Version: `Const-me/Whisper 1.12.0` (`Whisper.dll` PE product version `1.12.0.0`).
+- Source revision: `Const-me/Whisper@c5515ace19066e938854b4b99e0c2e9bbc2eeb65` (GitHub release tag `1.12.0`).
 - License: upstream whisper.cpp MIT `to_verify` against the exact wrapper/source revision before smoke pass.
 - Artifact SHA-256: preflight records `main.exe`, `Whisper.dll`, and selected model hashes without copying binaries/models.
 - Owner boundary: Composer-only feasibility assessment; no formal-system import.
 - Independent smoke command: `python components/asr-whisper-cpp/smoke.py`
-- Fixture: synthetic non-sensitive WAV fixture; exact fixture hash to be recorded before C1 smoke; no user classroom audio.
+- Fixture: public `Const-me/Whisper 1.12.0/SampleClips/jfk.wav` plus silent, empty, malformed, and unsupported fixtures; hashes only are retained; no user classroom audio.
 - Output contract: record only stable status, counts, timings, sizes, and stable error codes; do not store raw source/output.
 - Failure boundaries: unsupported input, empty output, timeout, cancellation/termination, malformed output, oversized output, repeated call, and cleanup must be covered before smoke pass.
-- Windows prerequisites: Windows test host, `H:/WhisperCli/main.exe`, and local `ggml-large-v3-turbo`; CLI preflight verifies language, TXT/SRT, duration options.
-- Resource measurement: wall time, peak working set, output bytes, child-process count to measure
+- Windows prerequisites: Windows test host, `H:/Whisper/cli/main.exe`, local `H:/Whisper/Models/ggml-large-v3-turbo.bin`, Windows SAPI voice and psutil; CLI preflight verifies language and TXT/SRT options.
+- Resource measurement: wall time, peak working set, output bytes, and child-process count recorded by the partial C1 evidence
 - Network policy: `disabled`; no real recipients, real webhook targets, provider accounts, or implicit downloads in smoke.
 - Timeout/output limit: `120s` / `262144 bytes`.
 - Cleanup: controlled temporary directory and child-process cleanup must be evidenced
 - Privacy/logging restrictions: no audio, transcript, absolute path, model path, stderr, or secret in ordinary logs/evidence
-- Smoke result: `smoke_passed` (C1 synthetic fixture; evidence `results/asr-whisper-cpp/c1-smoke.json`)
+- Smoke result: `smoke_passed` (C1-ASR-01 through C1-ASR-14 passed for official `H:/Whisper/cli` with public release fixture; official release asset hash comparison remains not_verified)
 - Integration result: `not_started`
-- Evidence path: `not_recorded`
+- Evidence path: local partial smoke evidence `results/asr-whisper-cpp/c1-smoke.json` (ignored; not a catalog promotion artifact)
 - Formal system allowed: `false`
-- Notes: Selected C0 candidate and canonical local runtime. A local Chinese MP3 → TXT/SRT preparation smoke succeeded outside C1 evidence; do not infer offline accuracy, supported formats, or Windows reproducibility before the required sanitized fixture/failure smoke.
+- Notes: Selected C0 candidate and canonical local runtime. Official 1.12.0 CLI passes the public `jfk.wav` speech fixture; the SAPI fixture remains unsuitable as a positive recognition oracle for this runtime and is not used for promotion.
