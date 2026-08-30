@@ -99,6 +99,12 @@ def main() -> int:
     if capabilities != required_capabilities:
         fail(f"capability coverage is {sorted(capabilities)}, expected {sorted(required_capabilities)}")
 
+    selected = {candidate["id"] for candidate in candidates if "C0 selected" in candidate["notes"]}
+    if selected != {"asr-whisper-cpp", "ocr-paddleocr", "ocr-rapidocr"}:
+        fail(f"unexpected C0 media selections: {sorted(selected)}")
+    asr = next(candidate for candidate in candidates if candidate["id"] == "asr-whisper-cpp")
+    if not asr["local_reference"].startswith("H:/WhisperCli canonical runtime"):
+        fail("asr-whisper-cpp must retain H:/WhisperCli as its canonical runtime")
     print(f"B0 catalog validation passed: {len(candidates)} researching candidates across 4 capabilities")
     return 0
 

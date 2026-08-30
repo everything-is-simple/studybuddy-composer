@@ -3,18 +3,18 @@
 - Gate: B0 candidate intake; this card is not an approval.
 - Capability: `asr`
 - Kind: `speech-to-text`
-- Source: https://github.com/ggerganov/whisper.cpp; local archive identity/version requires verification
-- Local reference: H:/studybuddy-composer/components/WhisperCli.7z
-- Version: `to_verify`
+- Source: https://github.com/ggerganov/whisper.cpp; local RunningCheese wrapper provenance/revision remains to verify.
+- Local reference: `H:/WhisperCli` is the sole canonical runtime; `H:/studybuddy-composer/components/WhisperCli.7z` is Composer evidence/input only.
+- Version: whisper.cpp wrapper revision `to_verify`; selected model `ggml-large-v3-turbo`.
 - Source revision: `to_verify`
-- License: `to_verify`; record upstream license and exact source revision before smoke pass.
-- Artifact SHA-256: `to_record_after_selection`
+- License: upstream whisper.cpp MIT `to_verify` against the exact wrapper/source revision before smoke pass.
+- Artifact SHA-256: preflight records `main.exe`, `Whisper.dll`, and selected model hashes without copying binaries/models.
 - Owner boundary: Composer-only feasibility assessment; no formal-system import.
 - Independent smoke command: `python components/asr-whisper-cpp/smoke.py`
-- Fixture: synthetic non-sensitive WAV fixture; exact fixture hash to be recorded after selection
+- Fixture: synthetic non-sensitive WAV fixture; exact fixture hash to be recorded before C1 smoke; no user classroom audio.
 - Output contract: record only stable status, counts, timings, sizes, and stable error codes; do not store raw source/output.
 - Failure boundaries: unsupported input, empty output, timeout, cancellation/termination, malformed output, oversized output, repeated call, and cleanup must be covered before smoke pass.
-- Windows prerequisites: Windows 11 test host; exact runtime/model prerequisites to verify
+- Windows prerequisites: Windows test host, `H:/WhisperCli/main.exe`, and local `ggml-large-v3-turbo`; CLI preflight verifies language, TXT/SRT, duration options.
 - Resource measurement: wall time, peak working set, output bytes, child-process count to measure
 - Network policy: `disabled`; no real recipients, real webhook targets, provider accounts, or implicit downloads in smoke.
 - Timeout/output limit: `120s` / `262144 bytes`.
@@ -24,4 +24,4 @@
 - Integration result: `not_started`
 - Evidence path: `not_recorded`
 - Formal system allowed: `false`
-- Notes: Candidate only. Do not infer offline accuracy, supported formats, or Windows reproducibility before smoke.
+- Notes: Selected C0 candidate and canonical local runtime. A local Chinese MP3 → TXT/SRT preparation smoke succeeded outside C1 evidence; do not infer offline accuracy, supported formats, or Windows reproducibility before the required sanitized fixture/failure smoke.

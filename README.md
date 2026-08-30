@@ -13,7 +13,7 @@
 
 ## B0 当前状态
 
-B0 governance scaffold 已建立，覆盖 ASR、OCR、report、delivery 四类候选及统一证据字段。当前没有候选通过独立 smoke 或 Integration，因此没有新增正式系统可集成组件；下一步只能在隔离 Composer 环境执行候选 smoke。
+B0 governance scaffold 已建立，覆盖 ASR、OCR、report、delivery 四类候选及统一证据字段。C0 已选 `H:/WhisperCli`/whisper.cpp `large-v3-turbo` 为唯一 ASR runtime、PaddleOCR 为主 OCR、RapidOCR ONNX 为轻量回退；`DECISIONS/STUDYBUDDY_MEDIA_CAPABILITIES.md` 记录 edge-tts 与 PPTX 三层路径。当前没有候选通过独立 C1 smoke 或 Integration，因此没有新增正式系统可集成组件；本机 CLI/依赖预检只能作为准备度证据，下一步只能在隔离 Composer 环境执行候选 smoke。
 
 机器可读清单：`manifests/b0-catalog.json`；治理说明：`B0-COMPONENT-GOVERNANCE.md`。
 

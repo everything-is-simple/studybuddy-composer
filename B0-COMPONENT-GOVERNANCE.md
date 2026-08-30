@@ -34,8 +34,8 @@ Every candidate must have a `COMPONENT-CARD.md` and a catalog record containing:
 
 The machine-readable source of truth is [`manifests/b0-catalog.json`](manifests/b0-catalog.json). Current candidate counts:
 
-- ASR: 3 candidates (`researching`)
-- OCR: 3 candidates (`researching`)
+- ASR: 3 candidates (`researching`); C0 selects `H:/WhisperCli`/whisper.cpp `large-v3-turbo` as the sole runtime, while FunASR/SenseVoice remain unselected alternatives.
+- OCR: 3 candidates (`researching`); C0 selects PaddleOCR as primary and RapidOCR ONNX as lightweight fallback. CapsWriter remains a fit-assessment record, not a primary path.
 - Report: 1 candidate (`researching`)
 - Delivery: 2 candidates (`researching`)
 

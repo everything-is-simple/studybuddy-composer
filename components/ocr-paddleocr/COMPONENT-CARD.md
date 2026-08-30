@@ -3,18 +3,18 @@
 - Gate: B0 candidate intake; this card is not an approval.
 - Capability: `ocr`
 - Kind: `image-to-text`
-- Source: https://github.com/PaddlePaddle/PaddleOCR; upstream/version/license requires verification
-- Local reference: `none`
-- Version: `to_verify`
+- Source: https://github.com/PaddlePaddle/PaddleOCR; upstream revision still requires verification.
+- Local reference: Python 3.10 environment only; no model artifact is stored in Composer.
+- Version: `PaddleOCR 3.7.0` / `PaddlePaddle 3.3.1`.
 - Source revision: `to_verify`
-- License: `to_verify`; record upstream license and exact source revision before smoke pass.
-- Artifact SHA-256: `to_record_after_selection`
+- License: Apache-2.0 upstream; verify exact package/model licenses before smoke pass.
+- Artifact SHA-256: runtime package/model hashes to record only after offline model selection.
 - Owner boundary: Composer-only feasibility assessment; no formal-system import.
 - Independent smoke command: `python components/ocr-paddleocr/smoke.py`
 - Fixture: synthetic printed Chinese/English image set, blank image, corrupt image, oversized image
 - Output contract: record only stable status, counts, timings, sizes, and stable error codes; do not store raw source/output.
 - Failure boundaries: unsupported input, empty output, timeout, cancellation/termination, malformed output, oversized output, repeated call, and cleanup must be covered before smoke pass.
-- Windows prerequisites: Windows 11 test host; exact runtime/model prerequisites to verify
+- Windows prerequisites: Windows Python 3.10; package import preflight passed. Models must be explicitly provisioned locally before C1; first-run downloads are prohibited during smoke.
 - Resource measurement: wall time, peak working set, output bytes, child-process count to measure
 - Network policy: `disabled`; no real recipients, real webhook targets, provider accounts, or implicit downloads in smoke.
 - Timeout/output limit: `120s` / `524288 bytes`.
@@ -24,4 +24,4 @@
 - Integration result: `not_started`
 - Evidence path: `not_recorded`
 - Formal system allowed: `false`
-- Notes: Candidate only. Model download and runtime network behavior must be independently verified.
+- Notes: Selected primary C0 candidate for Chinese text, document layout/table work, and image/scanned PPT slides. Package import preflight passed, but model download/runtime network behavior, image accuracy, timeout, cleanup, and C1 smoke remain unverified.
