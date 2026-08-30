@@ -15,3 +15,20 @@ components/CapsWriterCli_Full/
 components/KaoBuddy-Windows.zip
 components/WhisperCli.7z
 components/WhisperCli/
+
+# B0 candidate runtime outputs and model artifacts (never commit)
+components/**/models/
+components/**/artifacts/
+components/**/fixtures/generated/
+components/**/*.onnx
+components/**/*.bin
+components/**/*.gguf
+components/**/*.pt
+components/**/*.pth
+components/**/*.safetensors
+components/**/*.wav
+components/**/*.mp3
+components/**/*.png
+components/**/*.jpg
+components/**/*.zip
+components/**/*.7z

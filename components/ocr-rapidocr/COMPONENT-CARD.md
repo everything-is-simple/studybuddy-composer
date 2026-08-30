@@ -1,0 +1,27 @@
+# Component Card: ocr-rapidocr
+
+- Gate: B0 candidate intake; this card is not an approval.
+- Capability: `ocr`
+- Kind: `image-to-text`
+- Source: https://github.com/RapidAI/RapidOCR; upstream/version/license requires verification
+- Local reference: `none`
+- Version: `to_verify`
+- Source revision: `to_verify`
+- License: `to_verify`; record upstream license and exact source revision before smoke pass.
+- Artifact SHA-256: `to_record_after_selection`
+- Owner boundary: Composer-only feasibility assessment; no formal-system import.
+- Independent smoke command: `python components/ocr-rapidocr/smoke.py`
+- Fixture: synthetic printed Chinese/English image set, blank image, corrupt image, oversized image
+- Output contract: record only stable status, counts, timings, sizes, and stable error codes; do not store raw source/output.
+- Failure boundaries: unsupported input, empty output, timeout, cancellation/termination, malformed output, oversized output, repeated call, and cleanup must be covered before smoke pass.
+- Windows prerequisites: Windows 11 test host; exact runtime/model prerequisites to verify
+- Resource measurement: wall time, peak working set, output bytes, child-process count to measure
+- Network policy: `disabled`; no real recipients, real webhook targets, provider accounts, or implicit downloads in smoke.
+- Timeout/output limit: `120s` / `524288 bytes`.
+- Cleanup: controlled temporary directory and child-process cleanup must be evidenced
+- Privacy/logging restrictions: no source image, full OCR text, absolute path, model path, stderr, or secret in ordinary logs/evidence
+- Smoke result: `researching`
+- Integration result: `not_started`
+- Evidence path: `not_recorded`
+- Formal system allowed: `false`
+- Notes: Candidate only. OCR output must be draft-first and cannot become a citation source without confirmation.

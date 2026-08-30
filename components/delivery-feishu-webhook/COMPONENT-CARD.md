@@ -1,0 +1,27 @@
+# Component Card: delivery-feishu-webhook
+
+- Gate: B0 candidate intake; this card is not an approval.
+- Capability: `delivery`
+- Kind: `webhook`
+- Source: H:/ai-studybuddy-composer/windows-native/07-feishu-webhook; source/version/license requires verification
+- Local reference: H:/ai-studybuddy-composer/windows-native/07-feishu-webhook
+- Version: `to_verify`
+- Source revision: `to_verify`
+- License: `to_verify`; record upstream license and exact source revision before smoke pass.
+- Artifact SHA-256: `to_record_after_selection`
+- Owner boundary: Composer-only feasibility assessment; no formal-system import.
+- Independent smoke command: `python components/delivery-feishu-webhook/smoke.py`
+- Fixture: fake/loopback HTTP receiver and synthetic report payload; never a real webhook
+- Output contract: record only stable status, counts, timings, sizes, and stable error codes; do not store raw source/output.
+- Failure boundaries: unsupported input, empty output, timeout, cancellation/termination, malformed output, oversized output, repeated call, and cleanup must be covered before smoke pass.
+- Windows prerequisites: Python runtime and loopback fake receiver; exact dependencies to verify
+- Resource measurement: wall time, peak working set, request/response bytes to measure
+- Network policy: `disabled`; no real recipients, real webhook targets, provider accounts, or implicit downloads in smoke.
+- Timeout/output limit: `30s` / `262144 bytes`.
+- Cleanup: receiver/process cleanup, timeout, retry and idempotency must be evidenced
+- Privacy/logging restrictions: no webhook URL, credentials, report body, raw response, or secret in logs/evidence
+- Smoke result: `researching`
+- Integration result: `not_started`
+- Evidence path: `not_recorded`
+- Formal system allowed: `false`
+- Notes: Candidate only. Live delivery remains prohibited until B3 and Formal authorization gates pass.

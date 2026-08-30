@@ -1,0 +1,27 @@
+# Component Card: report-core
+
+- Gate: B0 candidate intake; this card is not an approval.
+- Capability: `report`
+- Kind: `local-report-projection`
+- Source: H:/ai-studybuddy-composer/windows-native/05-report-core; source/version/license requires verification
+- Local reference: H:/ai-studybuddy-composer/windows-native/05-report-core
+- Version: `to_verify`
+- Source revision: `to_verify`
+- License: `to_verify`; record upstream license and exact source revision before smoke pass.
+- Artifact SHA-256: `to_record_after_selection`
+- Owner boundary: Composer-only feasibility assessment; no formal-system import.
+- Independent smoke command: `python components/report-core/smoke.py`
+- Fixture: synthetic daily/weekly/monthly/exam-alert records with empty and source-unavailable cases
+- Output contract: record only stable status, counts, timings, sizes, and stable error codes; do not store raw source/output.
+- Failure boundaries: unsupported input, empty output, timeout, cancellation/termination, malformed output, oversized output, repeated call, and cleanup must be covered before smoke pass.
+- Windows prerequisites: Python runtime and isolated temporary directory; exact dependencies to verify
+- Resource measurement: wall time, peak working set, output bytes to measure
+- Network policy: `disabled`; no real recipients, real webhook targets, provider accounts, or implicit downloads in smoke.
+- Timeout/output limit: `60s` / `1048576 bytes`.
+- Cleanup: temporary export directory cleanup and bounded output must be evidenced
+- Privacy/logging restrictions: report artifact and raw source text must not be written to ordinary logs or audit rows
+- Smoke result: `researching`
+- Integration result: `not_started`
+- Evidence path: `not_recorded`
+- Formal system allowed: `false`
+- Notes: Candidate only. Report output must be deterministic, allowlisted, redacted, and separately audited.

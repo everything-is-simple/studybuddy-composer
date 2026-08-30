@@ -8,6 +8,14 @@
 - `components/`：组件能力卡、独立 smoke test、输入输出契约和失败边界。
 - `manifests/`：组件状态清单，只有真实测试通过才允许进入 integration。
 - `results/`：可再生测试结果，不进入正式仓库。
+- `manifests/b0-catalog.json`：B0 四类能力候选的机器可读 intake 清单；候选默认保持 `researching`。
+- `B0-COMPONENT-GOVERNANCE.md`：统一 component card、smoke、隐私、资源、网络和状态晋级规则。
+
+## B0 当前状态
+
+B0 governance scaffold 已建立，覆盖 ASR、OCR、report、delivery 四类候选及统一证据字段。当前没有候选通过独立 smoke 或 Integration，因此没有新增正式系统可集成组件；下一步只能在隔离 Composer 环境执行候选 smoke。
+
+机器可读清单：`manifests/b0-catalog.json`；治理说明：`B0-COMPONENT-GOVERNANCE.md`。
 
 ## 装配门禁
 

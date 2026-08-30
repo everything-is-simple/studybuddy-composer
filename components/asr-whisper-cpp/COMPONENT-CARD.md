@@ -1,0 +1,27 @@
+# Component Card: asr-whisper-cpp
+
+- Gate: B0 candidate intake; this card is not an approval.
+- Capability: `asr`
+- Kind: `speech-to-text`
+- Source: https://github.com/ggerganov/whisper.cpp; local archive identity/version requires verification
+- Local reference: H:/studybuddy-composer/components/WhisperCli.7z
+- Version: `to_verify`
+- Source revision: `to_verify`
+- License: `to_verify`; record upstream license and exact source revision before smoke pass.
+- Artifact SHA-256: `to_record_after_selection`
+- Owner boundary: Composer-only feasibility assessment; no formal-system import.
+- Independent smoke command: `python components/asr-whisper-cpp/smoke.py`
+- Fixture: synthetic non-sensitive WAV fixture; exact fixture hash to be recorded after selection
+- Output contract: record only stable status, counts, timings, sizes, and stable error codes; do not store raw source/output.
+- Failure boundaries: unsupported input, empty output, timeout, cancellation/termination, malformed output, oversized output, repeated call, and cleanup must be covered before smoke pass.
+- Windows prerequisites: Windows 11 test host; exact runtime/model prerequisites to verify
+- Resource measurement: wall time, peak working set, output bytes, child-process count to measure
+- Network policy: `disabled`; no real recipients, real webhook targets, provider accounts, or implicit downloads in smoke.
+- Timeout/output limit: `120s` / `262144 bytes`.
+- Cleanup: controlled temporary directory and child-process cleanup must be evidenced
+- Privacy/logging restrictions: no audio, transcript, absolute path, model path, stderr, or secret in ordinary logs/evidence
+- Smoke result: `researching`
+- Integration result: `not_started`
+- Evidence path: `not_recorded`
+- Formal system allowed: `false`
+- Notes: Candidate only. Do not infer offline accuracy, supported formats, or Windows reproducibility before smoke.

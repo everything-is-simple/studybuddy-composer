@@ -1,0 +1,27 @@
+# Component Card: ocr-capswriter
+
+- Gate: B0 candidate intake; this card is not an approval.
+- Capability: `ocr`
+- Kind: `candidate-capability-fit`
+- Source: local reference only; capability fit must be verified before treating as OCR
+- Local reference: H:/studybuddy-composer/components/CapsWriterCli_Full/
+- Version: `to_verify`
+- Source revision: `to_verify`
+- License: `to_verify`; record upstream license and exact source revision before smoke pass.
+- Artifact SHA-256: `to_record_after_selection`
+- Owner boundary: Composer-only feasibility assessment; no formal-system import.
+- Independent smoke command: `python components/ocr-capswriter/smoke.py`
+- Fixture: synthetic printed Chinese/English image set; candidate may be rejected if it is ASR-only
+- Output contract: record only stable status, counts, timings, sizes, and stable error codes; do not store raw source/output.
+- Failure boundaries: unsupported input, empty output, timeout, cancellation/termination, malformed output, oversized output, repeated call, and cleanup must be covered before smoke pass.
+- Windows prerequisites: Windows 11 test host; exact runtime/model prerequisites to verify
+- Resource measurement: wall time, peak working set, output bytes, child-process count to measure
+- Network policy: `disabled`; no real recipients, real webhook targets, provider accounts, or implicit downloads in smoke.
+- Timeout/output limit: `120s` / `524288 bytes`.
+- Cleanup: controlled temporary directory and child-process cleanup must be evidenced
+- Privacy/logging restrictions: no source image, full OCR text, absolute path, stderr, or secret in ordinary logs/evidence
+- Smoke result: `researching`
+- Integration result: `not_started`
+- Evidence path: `not_recorded`
+- Formal system allowed: `false`
+- Notes: Roadmap candidate retained for explicit fit assessment; this record makes no OCR capability claim.
