@@ -1,6 +1,6 @@
 # Component Card: ocr-paddleocr
 
-- Gate: B0 candidate intake; Composer C1 smoke passed in the exact local package/model scope; this card is not Integration or Formal approval.
+- Gate: B0 candidate intake; Composer C1 and isolated Integration C2 passed in the exact local package/model scope; this card is not Formal approval.
 - Capability: `ocr`
 - Kind: `image-to-text`
 - Source: https://github.com/PaddlePaddle/PaddleOCR; upstream revision still requires verification.
@@ -21,7 +21,7 @@
 - Cleanup: controlled temporary directory and child-process cleanup must be evidenced
 - Privacy/logging restrictions: no source image, full OCR text, absolute path, model path, stderr, or secret in ordinary logs/evidence
 - Smoke result: `smoke_passed` (exact Windows/Python 3.10 package and local PP-OCRv5 models)
-- Integration result: `not_started`
-- Evidence path: `H:/studybuddy-composer/results/ocr-paddleocr/c1-smoke.json`
+- Integration result: `integration_passed`
+- Evidence path: `H:/studybuddy-composer/results/ocr-paddleocr/c1-smoke.json`; C2: `H:/studybuddy-integration/results/ocr-paddleocr-c2/integration.json`
 - Formal system allowed: `false`
-- Notes: Selected primary C0 candidate for Chinese text, document layout/table work, and image/scanned PPT slides. C1 passed for PP-OCRv5_server_det/PP-OCRv5_server_rec in the exact local environment; broader image quality, model licenses/upstream revision, other formats, concurrency and capacity remain `not_verified`. OCR output must be draft-first and cannot become a citation source without confirmation.
+- Notes: Selected primary C0 candidate for Chinese text, document layout/table work, and image/scanned PPT slides. C1 and isolated C2 passed for PP-OCRv5_server_det/PP-OCRv5_server_rec. C2 covered original hash/storage, draft-first confidence/uncertain segments, explicit confirmation to a same-material revision, source deletion degradation, rollback, and backup/restore non-repair. Broader image quality, model licenses/upstream revision, other formats, concurrency and capacity remain `not_verified`; OCR output cannot become a citation source without confirmation.
