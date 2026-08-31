@@ -1,14 +1,14 @@
 # Component Card: ocr-paddleocr
 
-- Gate: B0 candidate intake; this card is not an approval.
+- Gate: B0 candidate intake; Composer C1 smoke passed in the exact local package/model scope; this card is not Integration or Formal approval.
 - Capability: `ocr`
 - Kind: `image-to-text`
 - Source: https://github.com/PaddlePaddle/PaddleOCR; upstream revision still requires verification.
 - Local reference: Python 3.10 environment only; no model artifact is stored in Composer.
 - Version: `PaddleOCR 3.7.0` / `PaddlePaddle 3.3.1`.
-- Source revision: `to_verify`
+- Source revision: `PaddleX official inference models paddle3.0.0`; exact upstream revision/license still requires separate verification
 - License: Apache-2.0 upstream; verify exact package/model licenses before smoke pass.
-- Artifact SHA-256: runtime package/model hashes to record only after offline model selection.
+- Artifact SHA-256: model inventory recorded at `results/ocr-paddleocr/model-inventory.json`; archive hashes are recorded there.
 - Owner boundary: Composer-only feasibility assessment; no formal-system import.
 - Independent smoke command: `python components/ocr-paddleocr/smoke.py`
 - Fixture: synthetic printed Chinese/English image set, blank image, corrupt image, oversized image
@@ -20,8 +20,8 @@
 - Timeout/output limit: `120s` / `524288 bytes`.
 - Cleanup: controlled temporary directory and child-process cleanup must be evidenced
 - Privacy/logging restrictions: no source image, full OCR text, absolute path, model path, stderr, or secret in ordinary logs/evidence
-- Smoke result: `researching`
+- Smoke result: `smoke_passed` (exact Windows/Python 3.10 package and local PP-OCRv5 models)
 - Integration result: `not_started`
-- Evidence path: `not_recorded`
+- Evidence path: `H:/studybuddy-composer/results/ocr-paddleocr/c1-smoke.json`
 - Formal system allowed: `false`
-- Notes: Selected primary C0 candidate for Chinese text, document layout/table work, and image/scanned PPT slides. Package import preflight passed, but model download/runtime network behavior, image accuracy, timeout, cleanup, and C1 smoke remain unverified.
+- Notes: Selected primary C0 candidate for Chinese text, document layout/table work, and image/scanned PPT slides. C1 passed for PP-OCRv5_server_det/PP-OCRv5_server_rec in the exact local environment; broader image quality, model licenses/upstream revision, other formats, concurrency and capacity remain `not_verified`. OCR output must be draft-first and cannot become a citation source without confirmation.

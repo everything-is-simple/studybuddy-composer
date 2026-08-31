@@ -82,18 +82,23 @@ def run_smoke(component: str, artifact: Path) -> int:
         root = Path(directory)
         fixtures = make_fixtures(root)
         checks: list[dict[str, object]] = []
-        config_ready = component == "ocr-rapidocr" or bool(os.environ.get("STUDYBUDDY_PADDLE_DET_MODEL_DIR"))
+        config_ready = component == "ocr-rapidocr" or bool(os.environ.get("STUDYBUDDY_PADDLE_MODEL_ROOT"))
         checks.append(check("C1-OCR-01", "offline runtime and local model", config_ready,
                             model_configured=config_ready, network_default_disabled=True))
         if config_ready:
-            worker_extra = [os.environ["STUDYBUDDY_PADDLE_DET_MODEL_DIR"]] if component == "ocr-paddleocr" else []
+            worker_extra = [os.environ["STUDYBUDDY_PADDLE_MODEL_ROOT"]] if component == "ocr-paddleocr" else []
             success = run_worker(component, fixtures["success"], root, extra_args=worker_extra)
+            blank = run_worker(component, fixtures["blank"], root, extra_args=worker_extra)
+            oversized = run_worker(component, fixtures["oversized"], root, extra_args=worker_extra)
+            corrupt = run_worker(component, fixtures["corrupt"], root, extra_args=worker_extra)
+            unsupported = run_worker(component, fixtures["unsupported"], root, extra_args=worker_extra)
+            repeat = run_worker(component, fixtures["success"], root, extra_args=worker_extra)
+            timeout_case = run_worker(component, fixtures["success"], root, timeout=0.001, extra_args=worker_extra)
             blank = run_worker(component, fixtures["blank"], root)
             oversized = run_worker(component, fixtures["oversized"], root)
             corrupt = run_worker(component, fixtures["corrupt"], root)
             unsupported = run_worker(component, fixtures["unsupported"], root)
             repeat = run_worker(component, fixtures["success"], root)
-            timeout_case = run_worker(component, fixtures["success"], root, timeout=0.001)
         else:
             unavailable = {"exit_code": None, "elapsed_ms": 0, "output_bytes": 0, "output_limited": False,
                            "result": {}, "stderr_retained": False}

@@ -37,12 +37,14 @@ def main() -> int:
         result = {"text": "\n".join(texts), "confidence": scores, "elapsed": elapsed}
     elif component == "ocr-paddleocr":
         from paddleocr import PaddleOCR
-        model_dir = sys.argv[4] if len(sys.argv) > 4 else None
+        model_root = sys.argv[4] if len(sys.argv) > 4 else None
         kwargs = {"lang": "ch", "use_doc_orientation_classify": False, "use_doc_unwarping": False,
-                  "use_textline_orientation": False}
-        if model_dir:
-            kwargs["text_detection_model_dir"] = str(Path(model_dir) / "det")
-            kwargs["text_recognition_model_dir"] = str(Path(model_dir) / "rec")
+                  "use_textline_orientation": False, "text_detection_model_name": "PP-OCRv5_server_det",
+                  "text_recognition_model_name": "PP-OCRv5_server_rec", "enable_mkldnn": False,
+                  "device": "cpu"}
+        if model_root:
+            kwargs["text_detection_model_dir"] = str(Path(model_root) / "PP-OCRv5_server_det")
+            kwargs["text_recognition_model_dir"] = str(Path(model_root) / "PP-OCRv5_server_rec")
         output = PaddleOCR(**kwargs).predict(str(image))
         texts = []
         scores = []
