@@ -11,6 +11,7 @@
 - Artifact SHA-256: `ce533c3f2d9cdb4db4f9ae05abfc3e592fe7ce05d8d2581246e2ab4c3a4e5849`
 - Owner boundary: Composer-only independent reimplementation and smoke; no formal-system import.
 - Independent smoke command: `python components/report-core/smoke.py`
+- Isolated Integration command: `python H:/studybuddy-integration/report-core/run_integration.py`
 - Fixture: synthetic daily/weekly/monthly/exam-alert records with empty and source-unavailable cases
 - Output contract: fixed allowlisted projection plus deterministic JSON/Markdown; evidence records only stable status, counts, timings, sizes, hashes, and error codes, never report bodies.
 - Failure boundaries: invalid kind/timezone/period/facts, unsupported format, malformed/corrupt output, timeout, oversized output, nondeterminism, network attempt, privacy violation, repeated call, and cleanup must be covered before smoke pass.
@@ -21,7 +22,8 @@
 - Cleanup: temporary export directory cleanup and bounded output evidenced by C1 smoke
 - Privacy/logging restrictions: report body, source content, answers, prompts, OCR/ASR text, local paths, credentials, raw output, database statements, and internal exceptions must not be written to ordinary logs or audit rows
 - Smoke result: `smoke_passed` for the exact independent runner and synthetic scope; 8 C1 checks passed
-- Integration result: `not_started`
+- Integration result: `integration_passed` for synthetic 9A-9D-shaped SQLite facts, source lifecycle, snapshot idempotency, and backup/restore non-repair
 - Evidence path: `H:/studybuddy-composer/results/report-core/c1-smoke.json`
+- Integration evidence path: `H:/studybuddy-integration/results/report-core-c2/integration.json`
 - Formal system allowed: `false`
-- Notes: C0 selected semantics only. PDF, HTML/email, Feishu cards, AI narrative, delivery state, network, recipients/webhooks, and task scheduling are excluded. See `C0-DECISION-AND-C1-PLAN.md`.
+- Notes: C0 scope, C1 smoke, and isolated C2 Integration passed for the exact synthetic scope. PDF, HTML/email, Feishu cards, AI narrative, delivery state, network, recipients/webhooks, and task scheduling are excluded. Formal implementation remains pending. See `C0-DECISION-AND-C1-PLAN.md`.

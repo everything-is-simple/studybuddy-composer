@@ -17,7 +17,7 @@ def test_b0_catalog_validation_passes():
         check=False,
     )
     assert result.returncode == 0, result.stdout + result.stderr
-    assert "2 smoke_passed, 2 integration_passed, 5 researching candidates" in result.stdout
+    assert "1 smoke_passed, 3 integration_passed, 5 researching candidates" in result.stdout
 
     catalog = json.loads((ROOT / "manifests" / "b0-catalog.json").read_text(encoding="utf-8"))
     candidates = catalog["candidates"]
@@ -35,11 +35,12 @@ def test_b0_catalog_validation_passes():
     assert paddleocr["evidence_path"] == "H:/studybuddy-composer/results/ocr-paddleocr/c1-smoke.json"
     assert paddleocr["integration_evidence_path"] == "H:/studybuddy-integration/results/ocr-paddleocr-c2/integration.json"
     report = next(candidate for candidate in candidates if candidate["id"] == "report-core")
-    assert report["status"] == "smoke_passed"
+    assert report["status"] == "integration_passed"
     assert report["version"] == "b3-report-projection-candidate-v1"
     assert report["license_status"] == "project_owned"
     assert report["evidence_path"] == "H:/studybuddy-composer/results/report-core/c1-smoke.json"
-    assert "C1 smoke passed" in report["notes"]
+    assert report["integration_evidence_path"] == "H:/studybuddy-integration/results/report-core-c2/integration.json"
+    assert "isolated C2 Integration passed" in report["notes"]
     assert "JSON/Markdown only" in report["notes"]
     assert "PDF" in report["notes"] and "delivery state" in report["notes"]
     plan = (ROOT / "components" / "report-core" / "C0-DECISION-AND-C1-PLAN.md").read_text(encoding="utf-8")
@@ -47,6 +48,14 @@ def test_b0_catalog_validation_passes():
     assert evidence["status"] == "passed"
     assert evidence["gate"] == "B3-C1"
     assert evidence["measurements"]["temporary_files"] == 0
+    integration = json.loads(
+        Path("H:/studybuddy-integration/results/report-core-c2/integration.json").read_text(encoding="utf-8")
+    )
+    assert integration["status"] == "integration_passed"
+    assert integration["gate"] == "B3-C2"
+    assert integration["checks"]["backup_restore_non_repair"] is True
+    assert integration["checks"]["network_called"] is False
+    assert integration["checks"]["formal_system_touched"] is False
     for marker in ("half-open", "source_deleted", "source_unavailable", "Network denial", "PDF is excluded"):
         assert marker in plan
     assert all(
