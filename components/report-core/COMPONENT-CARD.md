@@ -3,17 +3,17 @@
 - Gate: B0 candidate intake; this card is not an approval.
 - Capability: `report`
 - Kind: `local-report-projection`
-- Source: H:/ai-studybuddy-composer/windows-native/05-report-core; source/version/license requires verification
-- Local reference: H:/ai-studybuddy-composer/windows-native/05-report-core
-- Version: `to_verify`
-- Source revision: `to_verify`
-- License: `to_verify`; record upstream license and exact source revision before smoke pass.
-- Artifact SHA-256: `to_record_after_selection`
-- Owner boundary: Composer-only feasibility assessment; no formal-system import.
+- Source: StudyBuddy-defined deterministic projection contract; legacy local reference is audit input only.
+- Local reference: H:/ai-studybuddy-composer/windows-native/05-report-core (audited, not selected for copying)
+- Version: `b3-report-projection-candidate-v1`
+- Source revision: `contract-defined; implementation not started`
+- License: `project-owned reimplementation`; legacy reference license remains unverified and is not an implementation source.
+- Artifact SHA-256: `not_applicable_until_c1_implementation`
+- Owner boundary: Composer-only independent reimplementation and smoke; no formal-system import.
 - Independent smoke command: `python components/report-core/smoke.py`
 - Fixture: synthetic daily/weekly/monthly/exam-alert records with empty and source-unavailable cases
-- Output contract: record only stable status, counts, timings, sizes, and stable error codes; do not store raw source/output.
-- Failure boundaries: unsupported input, empty output, timeout, cancellation/termination, malformed output, oversized output, repeated call, and cleanup must be covered before smoke pass.
+- Output contract: fixed allowlisted projection plus deterministic JSON/Markdown; evidence records only stable status, counts, timings, sizes, hashes, and error codes, never report bodies.
+- Failure boundaries: invalid kind/timezone/period/facts, unsupported format, malformed/corrupt output, timeout, oversized output, nondeterminism, network attempt, privacy violation, repeated call, and cleanup must be covered before smoke pass.
 - Windows prerequisites: Python runtime and isolated temporary directory; exact dependencies to verify
 - Resource measurement: wall time, peak working set, output bytes to measure
 - Network policy: `disabled`; no real recipients, real webhook targets, provider accounts, or implicit downloads in smoke.
@@ -24,4 +24,4 @@
 - Integration result: `not_started`
 - Evidence path: `not_recorded`
 - Formal system allowed: `false`
-- Notes: Candidate only. Report output must be deterministic, allowlisted, redacted, and separately audited.
+- Notes: C0 selected semantics only. PDF, HTML/email, Feishu cards, AI narrative, delivery state, network, recipients/webhooks, and task scheduling are excluded. See `C0-DECISION-AND-C1-PLAN.md`.

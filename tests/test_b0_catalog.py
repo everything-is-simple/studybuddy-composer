@@ -34,6 +34,15 @@ def test_b0_catalog_validation_passes():
     assert paddleocr["status"] == "integration_passed"
     assert paddleocr["evidence_path"] == "H:/studybuddy-composer/results/ocr-paddleocr/c1-smoke.json"
     assert paddleocr["integration_evidence_path"] == "H:/studybuddy-integration/results/ocr-paddleocr-c2/integration.json"
+    report = next(candidate for candidate in candidates if candidate["id"] == "report-core")
+    assert report["status"] == "researching"
+    assert report["version"] == "b3-report-projection-candidate-v1"
+    assert report["license_status"] == "project_owned"
+    assert "JSON/Markdown only" in report["notes"]
+    assert "PDF" in report["notes"] and "delivery state" in report["notes"]
+    plan = (ROOT / "components" / "report-core" / "C0-DECISION-AND-C1-PLAN.md").read_text(encoding="utf-8")
+    for marker in ("half-open", "source_deleted", "source_unavailable", "Network denial", "PDF is excluded"):
+        assert marker in plan
     assert all(
         candidate["status"] == "researching"
         for candidate in candidates
