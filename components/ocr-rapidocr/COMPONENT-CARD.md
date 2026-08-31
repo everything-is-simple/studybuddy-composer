@@ -1,12 +1,12 @@
 # Component Card: ocr-rapidocr
 
-- Gate: B0 candidate intake; this card is not an approval.
+- Gate: B0 candidate intake; Composer C1 smoke passed in the exact local package/model scope; this card is not Integration or Formal approval.
 - Capability: `ocr`
 - Kind: `image-to-text`
 - Source: https://github.com/RapidAI/RapidOCR; upstream revision still requires verification.
 - Local reference: Python 3.10 environment only; no model artifact is stored in Composer.
 - Version: `rapidocr_onnxruntime 1.4.4` / ONNX Runtime.
-- Source revision: `to_verify`
+- Source revision: `rapidocr_onnxruntime==1.4.4`; exact upstream revision not verified
 - License: Apache-2.0 upstream; verify exact package/model licenses before smoke pass.
 - Artifact SHA-256: runtime package/model hashes to record only after offline model selection.
 - Owner boundary: Composer-only feasibility assessment; no formal-system import.
@@ -20,8 +20,8 @@
 - Timeout/output limit: `120s` / `524288 bytes`.
 - Cleanup: controlled temporary directory and child-process cleanup must be evidenced
 - Privacy/logging restrictions: no source image, full OCR text, absolute path, model path, stderr, or secret in ordinary logs/evidence
-- Smoke result: `researching`
+- Smoke result: `smoke_passed` (exact Windows/Python 3.10 package with bundled ONNX models)
 - Integration result: `not_started`
-- Evidence path: `not_recorded`
+- Evidence path: `H:/studybuddy-composer/results/ocr-rapidocr/c1-smoke.json`
 - Formal system allowed: `false`
-- Notes: Selected lightweight ONNX fallback, not the primary Chinese/document engine. Package import preflight passed, but model download/runtime network behavior, image accuracy, timeout, cleanup, and C1 smoke remain unverified. OCR output must be draft-first and cannot become a citation source without confirmation.
+- Notes: Selected lightweight ONNX fallback, not the primary Chinese/document engine. C1 passed for the exact local package and bundled model set; OCR quality beyond the synthetic fixture, upstream revision/license/hash, broader formats, concurrency and capacity remain `not_verified`. OCR output must be draft-first and cannot become a citation source without confirmation.

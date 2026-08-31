@@ -35,7 +35,7 @@ Every candidate must have a `COMPONENT-CARD.md` and a catalog record containing:
 The machine-readable source of truth is [`manifests/b0-catalog.json`](manifests/b0-catalog.json). Current candidate counts:
 
 - ASR: 1 selected candidate (`integration_passed`) and 2 alternatives (`researching`); the selected candidate is `Const-me/Whisper 1.12.0`, while FunASR/SenseVoice remain unselected alternatives.
-- OCR: 3 candidates (`researching`); C0 selects PaddleOCR as primary and RapidOCR ONNX as lightweight fallback. CapsWriter remains a fit-assessment record, not a primary path.
+- OCR: PaddleOCR remains `researching` pending local-model C1; RapidOCR ONNX is `smoke_passed` only for the exact `rapidocr_onnxruntime==1.4.4` package and bundled ONNX models; CapsWriter remains a fit-assessment record, not a primary path.
 - Report: 1 candidate (`researching`)
 - Delivery: 2 candidates (`researching`)
 
@@ -46,7 +46,7 @@ The machine-readable source of truth is [`manifests/b0-catalog.json`](manifests/
 - [x] Status vocabulary and promotion rules are frozen.
 - [x] Network-off, temp-directory, timeout, output-limit, cleanup, and privacy rules are frozen.
 - [x] Large binary/model/archive ignore rules are documented and applied to future artifacts.
-- [ ] Independent C1 smoke is partial for the selected ASR candidate: 13/14 checks pass, but C1-ASR-01 fails until an exact wrapper version/source revision is verified; OCR, report, and delivery candidates remain pending.
+- [ ] Independent C1 smoke is complete for RapidOCR in its exact local package/model scope (`12/12`); PaddleOCR local-model C1, report, and delivery candidates remain pending.
 - [x] C2 Integration has passed for the selected ASR candidate; OCR, report, and delivery Integration remain pending.
 - [ ] Formal contracts and adapters have been separately approved.
 
