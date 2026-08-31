@@ -36,7 +36,7 @@ The machine-readable source of truth is [`manifests/b0-catalog.json`](manifests/
 
 - ASR: 1 selected candidate (`integration_passed`) and 2 alternatives (`researching`); the selected candidate is `Const-me/Whisper 1.12.0`, while FunASR/SenseVoice remain unselected alternatives.
 - OCR: PaddleOCR has `integration_passed` and RapidOCR ONNX has `smoke_passed`, each only for its exact local package/model scope; PaddleOCR uses PP-OCRv5_server_det/rec from the PaddleX official inference host. Neither has Formal authorization; CapsWriter remains a fit-assessment record, not a primary path.
-- Report: 1 C0 scope-selected candidate (`researching`); deterministic JSON/Markdown projection only, with PDF/AI/delivery excluded from C1
+- Report: 1 C1 `smoke_passed` candidate; deterministic JSON/Markdown projection only, with PDF/AI/delivery excluded
 - Delivery: 2 candidates (`researching`)
 
 ## B0 completion checklist
