@@ -32,3 +32,6 @@ components/**/*.png
 components/**/*.jpg
 components/**/*.zip
 components/**/*.7z
+
+# third-party vendor snapshots moved from repo top level (2026-09-15 cleanup, never commit)
+references/vendor/

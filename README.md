@@ -4,9 +4,10 @@
 
 ## 目录职责
 
-- `references/`：借鉴系统的本地路径登记、版本、许可证和借鉴范围。
-- `components/`：组件能力卡、独立 smoke test、输入输出契约和失败边界。
+- `references/`：借鉴系统的本地路径登记、版本、许可证和借鉴范围；`references/vendor/` 存放第三方系统的本地解压副本（PaddleOCR、Whisper、kaobuddy 等，2026-09-15 从仓库顶层迁入，git 不跟踪）。
+- `components/`：组件能力卡、独立 smoke test、输入输出契约和失败边界；`.gitignore` 登记的第三方安装包（KaoBuddy-Windows.zip、WhisperCli.7z、CapsWriterCli_Full*）按 2026-09-15 决定原地保留，属于登记过的 never-commit 参考物料。
 - `manifests/`：组件状态清单，只有真实测试通过才允许进入 integration。
+- `audits/`：历史审计与阶段性计划文档（2026-09-15 从仓库顶层归拢）。
 - `results/`：可再生测试结果，不进入正式仓库。
 - `manifests/b0-catalog.json`：B0 四类能力候选的机器可读 intake 清单；当前官方 ASR 候选为 `integration_passed`，其余 8 个候选为 `researching`；OCR、报告和外发候选尚未进入 Integration。
 - `B0-COMPONENT-GOVERNANCE.md`：统一 component card、smoke、隐私、资源、网络和状态晋级规则。

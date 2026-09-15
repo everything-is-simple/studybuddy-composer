@@ -3,7 +3,7 @@
 Rechecked from the upstream repository on 2026-08-19.
 
 - Remote: `https://github.com/jin-zi-xuan/kaobuddy-pwa.git`
-- Audit checkout: `H:/kaobuddy-remote-audit`
+- Audit checkout: `H:/studybuddy-composer/references/vendor/kaobuddy-remote-audit`（2026-09-15 迁移）
 - Remote commit: `2e12271066a17384a1888b4598805c3f4bafd60e`
 - Remote tag: `v1.2.4`
 - Remote branch: `main`

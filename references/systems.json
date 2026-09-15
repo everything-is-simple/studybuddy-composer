@@ -6,6 +6,10 @@
     {"name":"ai-studybuddy","path":"H:/ai-studybuddy","remote":"unknown-local-record","role":"business rules and service implementation reference","status":"registered"},
     {"name":"pi-studybuddy","path":"H:/pi-studybuddy","remote":"https://github.com/everything-is-simple/pi-studybuddy","role":"failure ledger and security lessons only","status":"registered"},
     {"name":"ai-studybuddy-composer","path":"H:/ai-studybuddy-composer","remote":"local trial ground","role":"component evidence source","status":"registered"},
-    {"name":"pi-references","path":"H:/pi-references","remote":"local reference collection","role":"provider and upstream component research","status":"registered"}
+    {"name":"pi-references","path":"H:/pi-references","remote":"local reference collection","role":"provider and upstream component research","status":"registered"},
+    {"name":"paddleocr-local-copy","path":"H:/studybuddy-composer/references/vendor/PaddleOCR","remote":"PaddleOCR-3.7.0 local extracted copy","role":"OCR candidate source snapshot","status":"registered-2026-09-15"},
+    {"name":"constme-whisper-local-copy","path":"H:/studybuddy-composer/references/vendor/Whisper","remote":"Const-me/Whisper 1.12.0 local release copy","role":"ASR official release reference","status":"registered-2026-09-15"},
+    {"name":"kaobuddy-local-copy","path":"H:/studybuddy-composer/references/vendor/kaobuddy","remote":"KaoBuddy-Windows local extracted copy","role":"KaoBuddy archive snapshot","status":"registered-2026-09-15"},
+    {"name":"kaobuddy-remote-audit","path":"H:/studybuddy-composer/references/vendor/kaobuddy-remote-audit","remote":"remote repo audit snapshot","role":"KaoBuddy remote audit evidence","status":"registered-2026-09-15"}
   ]
 }
