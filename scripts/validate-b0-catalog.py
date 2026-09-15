@@ -99,6 +99,18 @@ def main() -> int:
     if capabilities != required_capabilities:
         fail(f"capability coverage is {sorted(capabilities)}, expected {sorted(required_capabilities)}")
 
+    delivery_candidates = [candidate for candidate in candidates if candidate["capability"] == "delivery"]
+    if {candidate["id"] for candidate in delivery_candidates} != {"delivery-qq-smtp", "delivery-feishu-webhook"}:
+        fail("delivery candidates must be QQ SMTP and Feishu Webhook")
+    for candidate in delivery_candidates:
+        if candidate["status"] == "smoke_passed":
+            evidence = ROOT / "results" / candidate["id"] / "c1-smoke.json"
+            if not evidence.is_file():
+                fail(f"{candidate['id']} is promoted without local C1 evidence")
+            result = json.loads(evidence.read_text(encoding="utf-8"))
+            required_checks = {"payload", "network_default_disabled", "secret_isolation", "timeout", "rate_limit", "failure", "explicit_retry", "idempotency_key", "receiver_cleanup"}
+            if result.get("status") != "passed" or result.get("gate") != "B4-C1" or not required_checks.issubset(result.get("checks", {})) or not all(result["checks"][key] for key in required_checks):
+                fail(f"{candidate['id']} C1 evidence is incomplete")
     selected = {candidate["id"] for candidate in candidates if "C0 selected" in candidate["notes"]}
     if selected != {"asr-whisper-cpp", "ocr-paddleocr", "ocr-rapidocr"}:
         fail(f"unexpected C0 media selections: {sorted(selected)}")

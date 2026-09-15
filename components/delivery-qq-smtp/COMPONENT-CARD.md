@@ -3,12 +3,12 @@
 - Gate: B0 candidate intake; this card is not an approval.
 - Capability: `delivery`
 - Kind: `smtp`
-- Source: H:/ai-studybuddy-composer/windows-native/06-qq-smtp; source/version/license requires verification
-- Local reference: H:/ai-studybuddy-composer/windows-native/06-qq-smtp
-- Version: `to_verify`
-- Source revision: `to_verify`
-- License: `to_verify`; record upstream license and exact source revision before smoke pass.
-- Artifact SHA-256: `to_record_after_selection`
+- Source: project-owned Python standard-library SMTP protocol smoke; QQ SMTP live endpoint is intentionally excluded from C1.
+- Local reference: `components/delivery-qq-smtp/smoke.py`
+- Version: `b4-qq-smtp-c1-v1`
+- Source revision: current Composer Git revision at evidence generation.
+- License: Python Software Foundation License 2.0 for the standard-library protocol dependency; no third-party component is bundled.
+- Artifact SHA-256: `not_applicable` (no selected external artifact)
 - Owner boundary: Composer-only feasibility assessment; no formal-system import.
 - Independent smoke command: `python components/delivery-qq-smtp/smoke.py`
 - Fixture: fake/loopback SMTP receiver and synthetic report payload; never a real recipient
@@ -20,8 +20,8 @@
 - Timeout/output limit: `30s` / `262144 bytes`.
 - Cleanup: receiver/process cleanup, timeout, retry and idempotency must be evidenced
 - Privacy/logging restrictions: no credentials, recipient address, report body, raw SMTP response, or secret in logs/evidence
-- Smoke result: `researching`
+- Smoke result: `smoke_passed` — only for in-process loopback SMTP protocol scope.
 - Integration result: `not_started`
-- Evidence path: `not_recorded`
+- Evidence path: `results/delivery-qq-smtp/c1-smoke.json`
 - Formal system allowed: `false`
-- Notes: Candidate only. Live delivery remains prohibited until B3 and Formal authorization gates pass.
+- Notes: C0/C1 evaluates only payload framing, loopback recipient allowlisting, secret non-recording, timeout, rate limit, explicit retry and Idempotency-Key replay. QQ authentication, `smtp.qq.com`, real recipients and live delivery are not exercised or approved.

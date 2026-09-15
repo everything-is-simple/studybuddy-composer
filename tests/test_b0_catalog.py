@@ -17,7 +17,7 @@ def test_b0_catalog_validation_passes():
         check=False,
     )
     assert result.returncode == 0, result.stdout + result.stderr
-    assert "1 smoke_passed, 3 integration_passed, 5 researching candidates" in result.stdout
+    assert "3 smoke_passed, 3 integration_passed, 3 researching candidates" in result.stdout
 
     catalog = json.loads((ROOT / "manifests" / "b0-catalog.json").read_text(encoding="utf-8"))
     candidates = catalog["candidates"]
@@ -43,6 +43,16 @@ def test_b0_catalog_validation_passes():
     assert "isolated C2 Integration passed" in report["notes"]
     assert "JSON/Markdown only" in report["notes"]
     assert "PDF" in report["notes"] and "delivery state" in report["notes"]
+    for candidate_id, evidence_name in (("delivery-qq-smtp", "delivery-qq-smtp"), ("delivery-feishu-webhook", "delivery-feishu-webhook")):
+        candidate = next(item for item in candidates if item["id"] == candidate_id)
+        assert candidate["status"] == "smoke_passed"
+        assert candidate["formal_system_allowed"] is False
+        assert candidate["network_default"] == "disabled"
+        assert candidate["evidence_path"] == f"H:/studybuddy-composer/results/{evidence_name}/c1-smoke.json"
+        assert "loopback" in candidate["notes"]
+        evidence = json.loads((ROOT / "results" / evidence_name / "c1-smoke.json").read_text(encoding="utf-8"))
+        assert evidence["status"] == "passed" and evidence["gate"] == "B4-C1"
+        assert all(evidence["checks"].values())
     plan = (ROOT / "components" / "report-core" / "C0-DECISION-AND-C1-PLAN.md").read_text(encoding="utf-8")
     evidence = json.loads((ROOT / "results/report-core/c1-smoke.json").read_text(encoding="utf-8"))
     assert evidence["status"] == "passed"
@@ -61,5 +71,5 @@ def test_b0_catalog_validation_passes():
     assert all(
         candidate["status"] == "researching"
         for candidate in candidates
-        if candidate["id"] not in {"asr-whisper-cpp", "ocr-rapidocr", "ocr-paddleocr", "report-core"}
+        if candidate["id"] not in {"asr-whisper-cpp", "ocr-rapidocr", "ocr-paddleocr", "report-core", "delivery-qq-smtp", "delivery-feishu-webhook"}
     )

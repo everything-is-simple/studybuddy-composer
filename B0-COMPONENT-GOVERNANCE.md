@@ -37,7 +37,7 @@ The machine-readable source of truth is [`manifests/b0-catalog.json`](manifests/
 - ASR: 1 selected candidate (`integration_passed`) and 2 alternatives (`researching`); the selected candidate is `Const-me/Whisper 1.12.0`, while FunASR/SenseVoice remain unselected alternatives.
 - OCR: PaddleOCR has `integration_passed` and RapidOCR ONNX has `smoke_passed`, each only for its exact local package/model scope; PaddleOCR uses PP-OCRv5_server_det/rec from the PaddleX official inference host. Neither has Formal authorization; CapsWriter remains a fit-assessment record, not a primary path.
 - Report: `report-core` has `integration_passed` only for its independent synthetic 9A-9D-shaped SQLite scope, snapshot idempotency, source lifecycle, and backup/restore non-repair. JSON/Markdown projection only; PDF/AI/delivery remain excluded and Formal authorization is absent.
-- Delivery: 2 candidates (`researching`)
+- Delivery: QQ SMTP and Feishu Webhook each have `smoke_passed` C1 evidence only for their separate in-process loopback protocol scopes. Neither smoke loads credentials or reaches a real recipient/webhook; Integration and Formal remain pending.
 
 ## B0 completion checklist
 
@@ -46,8 +46,8 @@ The machine-readable source of truth is [`manifests/b0-catalog.json`](manifests/
 - [x] Status vocabulary and promotion rules are frozen.
 - [x] Network-off, temp-directory, timeout, output-limit, cleanup, and privacy rules are frozen.
 - [x] Large binary/model/archive ignore rules are documented and applied to future artifacts.
-- [x] Independent C1 smoke is complete for RapidOCR, PaddleOCR, and `report-core` in their declared local scopes; delivery candidates remain pending.
-- [x] C2 Integration has passed for the selected ASR candidate, PaddleOCR, and `report-core`; RapidOCR and delivery Integration remain pending.
+- [x] Independent C1 smoke is complete for RapidOCR, PaddleOCR, `report-core`, QQ SMTP loopback and Feishu Webhook loopback in their declared local scopes.
+- [x] C2 Integration has passed for the selected ASR candidate, PaddleOCR, and `report-core`; RapidOCR and both delivery candidates remain pending.
 - [x] B3 report C0 audit/scope and independent C1/C2 evidence are complete; Formal contract/adoption work remains separate and pending.
 - [ ] Formal contracts and adapters have been separately approved.
 
