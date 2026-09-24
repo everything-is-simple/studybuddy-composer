@@ -1,11 +1,11 @@
 # B0 Component Governance
 
-> Updated: 2026-08-30
+> Updated: 2026-09-24
 > Status: governance scaffolded; selected candidate smoke and isolated Integration evidence are recorded where stated.
 
 ## Purpose
 
-B0 establishes one auditable intake contract for ASR, OCR, report, and delivery candidates before any real capability is implemented in StudyBuddy. The official ASR 1.12.0, PaddleOCR, and `report-core` candidates are `integration_passed`; five candidates remain `researching` and RapidOCR is `smoke_passed`. C1/C2 use the public `SampleClips/jfk.wav` fixture where applicable; official release asset hash comparison remains not_verified. No B0 record authorizes import into `H:/studybuddy`.
+B0 establishes one auditable intake contract for ASR, OCR, report, and delivery candidates before any real capability is implemented in StudyBuddy. The official ASR 1.12.0, PaddleOCR, `report-core`, and RapidOCR candidates are `integration_passed`; five candidates remain `researching`. RapidOCR strict C2 is limited to the exact local package/model hashes, synthetic image scope, controlled primary failure, and local lifecycle/backup checks. C1/C2 use the public `SampleClips/jfk.wav` fixture where applicable; upstream/license verification remains separate. No B0 record authorizes import into `H:/studybuddy`.
 
 ## Required record
 
@@ -35,7 +35,7 @@ Every candidate must have a `COMPONENT-CARD.md` and a catalog record containing:
 The machine-readable source of truth is [`manifests/b0-catalog.json`](manifests/b0-catalog.json). Current candidate counts:
 
 - ASR: 1 selected candidate (`integration_passed`) and 2 alternatives (`researching`); the selected candidate is `Const-me/Whisper 1.12.0`, while FunASR/SenseVoice remain unselected alternatives.
-- OCR: PaddleOCR has `integration_passed` and RapidOCR ONNX has `smoke_passed`, each only for its exact local package/model scope; PaddleOCR uses PP-OCRv5_server_det/rec from the PaddleX official inference host. Neither has Formal authorization; CapsWriter remains a fit-assessment record, not a primary path.
+- OCR: PaddleOCR and RapidOCR ONNX have `integration_passed`, each only for its exact local package/model scope; RapidOCR strict C2 includes real primary-failure -> single fallback evidence. PaddleOCR uses PP-OCRv5_server_det/rec from the PaddleX official inference host. Neither has Formal authorization; CapsWriter remains a fit-assessment record, not a primary path.
 - Report: `report-core` has `integration_passed` only for its independent synthetic 9A-9D-shaped SQLite scope, snapshot idempotency, source lifecycle, and backup/restore non-repair. JSON/Markdown projection only; PDF/AI/delivery remain excluded and Formal authorization is absent.
 - Delivery: QQ SMTP and Feishu Webhook each have `smoke_passed` C1 evidence only for their separate in-process loopback protocol scopes. Neither smoke loads credentials or reaches a real recipient/webhook; Integration and Formal remain pending.
 
@@ -47,7 +47,7 @@ The machine-readable source of truth is [`manifests/b0-catalog.json`](manifests/
 - [x] Network-off, temp-directory, timeout, output-limit, cleanup, and privacy rules are frozen.
 - [x] Large binary/model/archive ignore rules are documented and applied to future artifacts.
 - [x] Independent C1 smoke is complete for RapidOCR, PaddleOCR, `report-core`, QQ SMTP loopback and Feishu Webhook loopback in their declared local scopes.
-- [x] C2 Integration has passed for the selected ASR candidate, PaddleOCR, and `report-core`; RapidOCR and both delivery candidates remain pending.
+- [x] C2 Integration has passed for the selected ASR candidate, PaddleOCR, RapidOCR, and `report-core`; both delivery candidates remain pending.
 - [x] B3 report C0 audit/scope and independent C1/C2 evidence are complete; Formal contract/adoption work remains separate and pending.
 - [ ] Formal contracts and adapters have been separately approved.
 

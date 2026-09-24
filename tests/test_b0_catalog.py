@@ -17,7 +17,7 @@ def test_b0_catalog_validation_passes():
         check=False,
     )
     assert result.returncode == 0, result.stdout + result.stderr
-    assert "3 smoke_passed, 3 integration_passed, 3 researching candidates" in result.stdout
+    assert "2 smoke_passed, 4 integration_passed, 3 researching candidates" in result.stdout
 
     catalog = json.loads((ROOT / "manifests" / "b0-catalog.json").read_text(encoding="utf-8"))
     candidates = catalog["candidates"]
@@ -28,8 +28,9 @@ def test_b0_catalog_validation_passes():
     assert asr["version"] == "Const-me/Whisper 1.12.0 (Whisper.dll PE product version 1.12.0.0)"
     assert asr["source_revision"] == "Const-me/Whisper@c5515ace19066e938854b4b99e0c2e9bbc2eeb65"
     rapidocr = next(candidate for candidate in candidates if candidate["id"] == "ocr-rapidocr")
-    assert rapidocr["status"] == "smoke_passed"
+    assert rapidocr["status"] == "integration_passed"
     assert rapidocr["evidence_path"] == "H:/studybuddy-composer/results/ocr-rapidocr/c1-smoke.json"
+    assert rapidocr["integration_evidence_path"] == "H:/studybuddy-test/artifacts/rapidocr-c2-strict-20260924/rerun.json"
     paddleocr = next(candidate for candidate in candidates if candidate["id"] == "ocr-paddleocr")
     assert paddleocr["status"] == "integration_passed"
     assert paddleocr["evidence_path"] == "H:/studybuddy-composer/results/ocr-paddleocr/c1-smoke.json"

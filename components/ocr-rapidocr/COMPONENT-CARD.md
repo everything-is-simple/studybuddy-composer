@@ -1,6 +1,6 @@
 # Component Card: ocr-rapidocr
 
-- Gate: B0 candidate intake; Composer C1 smoke passed in the exact local package/model scope; this card is not Integration or Formal approval.
+- Gate: B0 candidate intake; Composer C1 and isolated Integration C2 passed in the exact local package/model scope; this card is not Formal approval.
 - Capability: `ocr`
 - Kind: `image-to-text`
 - Source: https://github.com/RapidAI/RapidOCR; upstream revision still requires verification.
@@ -8,7 +8,7 @@
 - Version: `rapidocr_onnxruntime 1.4.4` / ONNX Runtime.
 - Source revision: `rapidocr_onnxruntime==1.4.4`; exact upstream revision not verified
 - License: Apache-2.0 upstream; verify exact package/model licenses before smoke pass.
-- Artifact SHA-256: runtime package/model hashes to record only after offline model selection.
+- Artifact SHA-256: strict C2 records the three bundled ONNX model hashes in the sanitized Integration artifact.
 - Owner boundary: Composer-only feasibility assessment; no formal-system import.
 - Independent smoke command: `python components/ocr-rapidocr/smoke.py`
 - Fixture: synthetic printed Chinese/English image set, blank image, corrupt image, oversized image
@@ -21,7 +21,7 @@
 - Cleanup: controlled temporary directory and child-process cleanup must be evidenced
 - Privacy/logging restrictions: no source image, full OCR text, absolute path, model path, stderr, or secret in ordinary logs/evidence
 - Smoke result: `smoke_passed` (exact Windows/Python 3.10 package with bundled ONNX models)
-- Integration result: `not_started`
-- Evidence path: `H:/studybuddy-composer/results/ocr-rapidocr/c1-smoke.json`
+- Integration result: `integration_passed` (strict C2; real image formats, fallback injection, lifecycle, backup/restore non-call)
+- Evidence path: `H:/studybuddy-composer/results/ocr-rapidocr/c1-smoke.json`; strict C2: `H:/studybuddy-test/artifacts/rapidocr-c2-strict-20260924/rerun.json`
 - Formal system allowed: `false`
-- Notes: Selected lightweight ONNX fallback, not the primary Chinese/document engine. C1 passed for the exact local package and bundled model set; OCR quality beyond the synthetic fixture, upstream revision/license/hash, broader formats, concurrency and capacity remain `not_verified`. OCR output must be draft-first and cannot become a citation source without confirmation.
+- Notes: Selected lightweight ONNX fallback, not the primary Chinese/document engine. Strict C2 passed for the exact local package/model scope, including real primary-failure -> single RapidOCR fallback and no-third-provider behavior. OCR quality beyond the synthetic fixture, upstream revision/license, broader formats, concurrency and capacity remain `not_verified`. Formal adoption remains separately blocked pending a Formal fallback contract/adapter decision; OCR output must be draft-first and cannot become a citation source without confirmation.
