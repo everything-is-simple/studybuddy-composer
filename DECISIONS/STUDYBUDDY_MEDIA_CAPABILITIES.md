@@ -8,7 +8,7 @@
 
 | Capability | Selected path | Role | Current evidence/status |
 |---|---|---|---|
-| ASR | `H:/WhisperCli` using `ggml-large-v3-turbo.bin` | One canonical local runtime | Real local Chinese MP3 smoke passed; B1 Composer/Integration/Formal gates remain |
+| ASR | `H:/Whisper` using `ggml-large-v3-turbo.bin` | One canonical local runtime | Real local Chinese MP3 smoke passed; B1 Composer/Integration/Formal gates remain |
 | TTS | `edge-tts==7.2.8` | Free explicit online candidate | Package/voice-list smoke passed; network service, not offline; no purchased API key |
 | OCR | `PaddleOCR==3.7.0` + `PaddlePaddle==3.3.1` | Primary Chinese/document OCR candidate | Python imports passed; model/image smoke pending; B2 gates remain |
 | OCR fallback | `rapidocr_onnxruntime==1.4.4` | Lightweight ONNX fallback | Python import passed; image/model smoke pending |
@@ -19,7 +19,7 @@
 
 ## ASR decision
 
-`H:/WhisperCli` is the only canonical runtime. The copy under
+`H:/Whisper` is the only canonical runtime. The copy under
 `H:/studybuddy-composer/components/WhisperCli` is Composer evidence/input only;
 it must not be configured as a second runtime.
 
@@ -97,6 +97,6 @@ Phase 9D business scope. No package installation changes this status.
 - `rapidocr_onnxruntime`: 1.4.4
 - `markitdown`: 0.1.7
 - `python-pptx`: installed
-- `H:/WhisperCli`: canonical local ASR runtime
+- `H:/Whisper`: canonical local ASR runtime
 
 No real user audio/image/report content was used in the smoke evidence.

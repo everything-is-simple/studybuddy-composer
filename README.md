@@ -14,7 +14,7 @@
 
 ## B0 当前状态
 
-B0 governance scaffold 已建立，覆盖 ASR、OCR、report、delivery 四类候选及统一证据字段。C0 已选 `H:/WhisperCli`/whisper.cpp `large-v3-turbo` 为唯一 ASR runtime、PaddleOCR 为主 OCR、RapidOCR ONNX 为轻量回退；`DECISIONS/STUDYBUDDY_MEDIA_CAPABILITIES.md` 记录 edge-tts 与 PPTX 三层路径。当前选定的 whisper.cpp ASR 候选已运行完整独立 C1 smoke（`C1-ASR-01` 至 `C1-ASR-14`，覆盖合成语音、TXT/SRT、失败输入、超时/终止、限额、重复调用、清理、隐私和资源证据），官方 `Const-me/Whisper 1.12.0` 使用公开 release fixture `SampleClips/jfk.wav` 通过 `C1-ASR-01` 至 `C1-ASR-14`，并通过独立 C2 Integration（draft projection、失败/静音、幂等、回滚和 backup/restore）；SAPI 合成 WAV 不作为该 runtime 的正向识别 oracle。官方 release asset 哈希复核仍未验证。OCR、报告和外发候选也仍未通过 C1，且没有候选通过 Integration，因此没有新增正式系统可集成组件。
+B0 governance scaffold 已建立，覆盖 ASR、OCR、report、delivery 四类候选及统一证据字段。C0 已选 `H:/Whisper`/whisper.cpp `large-v3-turbo` 为唯一 ASR runtime、PaddleOCR 为主 OCR、RapidOCR ONNX 为轻量回退；`DECISIONS/STUDYBUDDY_MEDIA_CAPABILITIES.md` 记录 edge-tts 与 PPTX 三层路径。当前选定的 whisper.cpp ASR 候选已运行完整独立 C1 smoke（`C1-ASR-01` 至 `C1-ASR-14`，覆盖合成语音、TXT/SRT、失败输入、超时/终止、限额、重复调用、清理、隐私和资源证据），官方 `Const-me/Whisper 1.12.0` 使用公开 release fixture `SampleClips/jfk.wav` 通过 `C1-ASR-01` 至 `C1-ASR-14`，并通过独立 C2 Integration（draft projection、失败/静音、幂等、回滚和 backup/restore）；SAPI 合成 WAV 不作为该 runtime 的正向识别 oracle。官方 release asset 哈希复核仍未验证。OCR、报告和外发候选的 Formal 采用仍未获批准，不能据此授权正式系统集成。
 
 机器可读清单：`manifests/b0-catalog.json`；治理说明：`B0-COMPONENT-GOVERNANCE.md`。
 
